@@ -1,7 +1,6 @@
 
 
 const AlbumCover = ({ album }) => {
-
   return (
     <div className="album-cover-frame">
       <div 
