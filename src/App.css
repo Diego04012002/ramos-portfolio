@@ -90,7 +90,7 @@ body {
 
 /* HERO */
 
-#hero{
+#hero {
   height: 100vh;
 }
 
@@ -180,8 +180,10 @@ body {
   background-color: transparent;
 }
 
-
-.elHierroLine, .elHierroCircles, .elLanzaroteLine, .elLanzaroteCircles {
+.elHierroLine,
+.elHierroCircles,
+.elLanzaroteLine,
+.elLanzaroteCircles {
   animation: checkPopFirst 2s forwards;
 }
 
@@ -476,13 +478,18 @@ body {
 }
 
 .nav-link::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 50%;
   width: 0;
   height: 2px;
-  background: linear-gradient(90deg, transparent, var(--gold, #c9a84c), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--gold, #c9a84c),
+    transparent
+  );
   transform: translateX(-50%);
   transition: width 0.3s ease;
 }
@@ -506,8 +513,16 @@ body {
   animation: pulse 2s ease-in-out infinite;
 }
 
+.nav-text {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px
+}
+
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     box-shadow: 0 0 15px rgba(201, 168, 76, 0.6);
   }
   50% {
@@ -567,7 +582,6 @@ body {
     letter-spacing: 0px;
   }
 }
-
 
 /* TICKER */
 .ticker {
@@ -1341,7 +1355,7 @@ body {
 }
 
 /* ANIMATIONS */
-@keyframes checkPopFirst{
+@keyframes checkPopFirst {
   from {
     opacity: 0;
   }
@@ -1349,7 +1363,6 @@ body {
     opacity: 1;
   }
 }
-
 
 @keyframes scrollPulse {
   0%,
@@ -1405,7 +1418,7 @@ body {
 
 /* MOBILE */
 @media (max-width: 768px) {
-  .hero-right{
+  .hero-right {
     display: none;
   }
   .hero-content {

@@ -56,8 +56,10 @@ const Navigation = () => {
             Sobre
           </button>
         </div>
-
-        <div className="nav-accent"></div>
+        <div className='nav-text'>
+          <div className="nav-accent"></div>
+          <span>Lo más rapero de tu barrio.</span>
+        </div>
       </div>
     </nav>
   );
