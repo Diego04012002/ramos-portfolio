@@ -12,19 +12,5 @@
       "secondary": "#0e0b07"
     },
     "coverImage": "/assets/albums/elegante-y-peligroso.png"
-  },
-  {
-    "id": "elegante-y-peligroso 2.0",
-    "name": "Elegante y Peligroso",
-    "year": 2026,
-    "trackCount": 5,
-    "explicit": true,
-    "description": "El debut que lo dice todo. Urbano, crudo y sin filtros — Elegante y Peligroso es una declaración de intenciones. Beats que pesan, flows que cortan, y una actitud que no pide permiso.",
-    "spotifyUrl": "https://open.spotify.com/intl-es/album/11oVjRuji9OOGNX3JuOMG7",
-    "coverGradient": {
-      "primary": "rgba(255,160,20,0.12)",
-      "secondary": "#0e0b07"
-    },
-    "coverImage": "/assets/artist/ramos.jpg"
   }
 ]
