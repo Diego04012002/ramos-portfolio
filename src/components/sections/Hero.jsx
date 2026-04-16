@@ -51,7 +51,7 @@ const Hero = ({ artist, selectedAlbum }) => {
           <div className="scroll-line"></div>
         </div>
       </div>
-      <Ticker tracks={allTracks} />
+      {/* <Ticker tracks={allTracks} /> */}
     </section>
   );
 };

@@ -8,6 +8,7 @@ import tracksData from './data/tracks.json';
 import artistData from './data/artist.json';
 
 // Components
+import Navigation from './components/layout/Navigation';
 import CustomCursor from './components/layout/CustomCursor';
 import Hero from './components/sections/Hero';
 import AlbumSelector from './components/album/AlbumSelector';
@@ -55,6 +56,7 @@ function App() {
   return (
     <div className="ramos-app">
       <CustomCursor />
+      <Navigation />
       
       <Hero 
         artist={artistData} 
