@@ -1,0 +1,16 @@
+{
+  "name": "RAMOS",
+  "location": "Tenerife, España",
+  "genre": "Hip-Hop",
+  "listeners": 56,
+  "totalTracks": 24,
+  "totalAlbums": 3,
+  "debut": 2026,
+  "spotifyUrl": "https://open.spotify.com/intl-es/artist/5P4RNBFDdIItgf40CNx9D5",
+  "quote": "Elegante en el flow. Peligroso en el mensaje",
+  "bio": [
+    "Ramos llega con una propuesta directa y sin rodeos. Su sonido mezcla la crudeza del trap urbano con una actitud que se mueve entre dos mundos: el lujo y la calle. Un artista que conoce ambos lados y no tiene miedo de mostrarlos.",
+    "El debut Elegante y Peligroso es la presentación perfecta: beats que pesan, letras que van al grano, y una identidad visual tan oscura como la gasolinera de medianoche que protagoniza su portada."
+  ],
+  "image": "/assets/artist/ramos.jpg"
+}

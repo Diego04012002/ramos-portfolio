@@ -1,0 +1,1270 @@
+/* ============================================
+   RAMOS - Elegante y Peligroso
+   Converted to React Components
+   ============================================ */
+
+/* Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap");
+
+/* Variables */
+:root {
+  --black: #050505;
+  --near-black: #0c0c0c;
+  --dark: #111111;
+  --darker: #0a0a0a;
+  --gold: #c9a84c;
+  --gold-light: #e8c96a;
+  --gold-dim: rgba(201, 168, 76, 0.15);
+  --white: #f0ede8;
+  --white-dim: rgba(240, 237, 232, 0.55);
+  --white-faint: rgba(240, 237, 232, 0.12);
+  --red-dim: rgba(180, 30, 30, 0.4);
+  --grain-opacity: 0.045;
+}
+
+/* Reset y Globales */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: "Oswald", sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+  cursor: crosshair;
+}
+
+.ramos-app {
+  min-height: 100vh;
+  position: relative;
+}
+
+/* GRAIN OVERLAY */
+.ramos-app::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: var(--grain-opacity);
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* CUSTOM CURSOR */
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--gold);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s;
+}
+
+.cursor-ring {
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(201, 168, 76, 0.5);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  transition:
+    transform 0.18s ease,
+    width 0.2s,
+    height 0.2s;
+}
+
+/* HERO */
+
+#hero{
+  height: 100vh;
+}
+
+.hero-section {
+  height: 96vh;
+  position: relative;
+  min-height: 700px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-color: #1a1210;
+}
+
+.hero-scene {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      ellipse 60% 40% at 35% 55%,
+      rgba(255, 180, 40, 0.07) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 30% 60% at 75% 40%,
+      rgba(30, 30, 30, 0.8) 0%,
+      transparent 70%
+    ),
+    linear-gradient(160deg, #0e0b08 0%, #1a1008 30%, #0c0c0c 60%, #050505 100%);
+}
+
+.hero-scanlines {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.08) 2px,
+    rgba(0, 0, 0, 0.08) 4px
+  );
+  pointer-events: none;
+}
+
+.hero-cross-h,
+.hero-cross-v {
+  position: absolute;
+  background: rgba(201, 168, 76, 0.12);
+  pointer-events: none;
+}
+.hero-cross-h {
+  width: 100%;
+  height: 1px;
+  top: 50%;
+  left: 0;
+}
+.hero-cross-v {
+  width: 1px;
+  height: 100%;
+  left: 50%;
+  top: 0;
+}
+
+.hero-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 80% 80% at 50% 50%,
+    transparent 30%,
+    rgba(5, 5, 5, 0.7) 80%,
+    rgba(5, 5, 5, 0.95) 100%
+  );
+}
+
+.hero-right {
+  z-index: 2;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+  bottom: 20%;
+  right: 5%;
+  background-color: transparent;
+}
+
+
+.elHierroLine, .elHierroCircles, .elLanzaroteLine, .elLanzaroteCircles {
+  animation: checkPopFirst 2s forwards;
+}
+
+.hero-bottom-fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(to bottom, transparent, var(--black));
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  padding: 0 48px 80px;
+  width: 90%;
+}
+
+.hero-eyebrow {
+  font-family: "Space Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.2s forwards;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hero-eyebrow::before {
+  content: "";
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.hero-title {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: clamp(100px, 18vw, 220px);
+  line-height: 0.85;
+  letter-spacing: -2px;
+  color: var(--white);
+  text-shadow: 0 0 80px rgba(5, 5, 5, 0.8);
+  opacity: 0;
+  animation: fadeUp 0.9s 0.4s forwards;
+  position: relative;
+  display: inline-block;
+}
+
+.hero-title-stroke {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: clamp(100px, 18vw, 220px);
+  line-height: 0.85;
+  letter-spacing: -2px;
+  -webkit-text-stroke: 1px rgba(201, 168, 76, 0.4);
+  color: transparent;
+  display: block;
+  margin-top: -0.05em;
+  opacity: 0;
+  animation: fadeUp 0.9s 0.55s forwards;
+}
+
+.hero-subtitle {
+  margin-top: 32px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.75s forwards;
+  flex-wrap: wrap;
+}
+
+.hero-album-tag {
+  font-family: "Space Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--white-dim);
+}
+
+.hero-album-tag strong {
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.stat-num {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 32px;
+  color: var(--white);
+  letter-spacing: 2px;
+}
+
+.stat-label {
+  font-family: "Space Mono", monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--white-dim);
+  text-transform: uppercase;
+}
+
+.hero-cta-row {
+  margin-top: 40px;
+  display: flex;
+  gap: 16px;
+  opacity: 0;
+  animation: fadeUp 0.8s 1s forwards;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* BUTTONS */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 40px;
+  background: var(--gold);
+  color: var(--black);
+  font-family: "Oswald", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition:
+    background 0.2s,
+    transform 0.15s;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: var(--gold-light);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 32px;
+  background: transparent;
+  color: var(--white);
+  font-family: "Oswald", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid rgba(240, 237, 232, 0.25);
+  transition:
+    border-color 0.2s,
+    background 0.2s;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  border-color: var(--white);
+  background: var(--white-faint);
+}
+
+/* SCROLL INDICATOR */
+.scroll-indicator {
+  position: absolute;
+  bottom: 32px;
+  right: 48px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  animation: fadeIn 1s 1.5s forwards;
+}
+
+.scroll-line {
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: scrollPulse 2s infinite;
+}
+
+.scroll-text {
+  font-family: "Space Mono", monospace;
+  font-size: 8px;
+  letter-spacing: 3px;
+  color: var(--gold);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+}
+
+/* TICKER */
+.ticker {
+  background: var(--gold);
+  overflow: hidden;
+  padding: 12px 0;
+  position: relative;
+  height: 4vh;
+  animation: fadeUp 1s forwards;
+}
+
+.ticker-track {
+  display: flex;
+  gap: 0;
+  animation: tickerScroll 18s linear infinite;
+  width: max-content;
+}
+
+.ticker-item {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 14px;
+  letter-spacing: 4px;
+  color: var(--black);
+  padding: 0 32px;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.ticker-item::after {
+  content: "✦";
+  font-size: 10px;
+  opacity: 0.6;
+}
+
+/* ============================================
+   ALBUM SELECTOR (NEW - Multi-selection)
+   ============================================ */
+.album-selector-section {
+  padding: 100px 48px 60px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.album-selector-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.album-selector-header .section-label {
+  justify-content: center;
+}
+
+.album-selector-subtitle {
+  font-family: "Space Mono", monospace;
+  font-size: 11px;
+  color: var(--white-dim);
+  letter-spacing: 1px;
+  margin-top: 12px;
+}
+
+.album-selector-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.album-card {
+  cursor: pointer;
+  transition:
+    transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    opacity 0.3s;
+  position: relative;
+  max-width: 300px;
+}
+
+.album-card:hover {
+  transform: translateY(-8px) scale(1.02);
+}
+
+.album-card.selected {
+  transform: translateY(-4px);
+}
+
+.album-card-cover {
+  aspect-ratio: 1;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid transparent;
+  transition:
+    border-color 0.3s,
+    box-shadow 0.3s;
+}
+
+.album-card.selected .album-card-cover {
+  border-color: var(--gold);
+  box-shadow:
+    0 0 30px rgba(201, 168, 76, 0.3),
+    inset 0 0 60px rgba(201, 168, 76, 0.1);
+}
+
+.album-card:hover .album-card-cover {
+  border-color: rgba(201, 168, 76, 0.5);
+}
+
+.album-card-title {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 24px;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.8);
+  line-height: 1.1;
+  max-width: 80%;
+}
+
+.album-card-year {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  font-family: "Space Mono", monospace;
+  font-size: 12px;
+  color: var(--gold);
+  letter-spacing: 2px;
+}
+
+.album-card-check {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 60px;
+  height: 60px;
+  background: var(--gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--black);
+  animation: checkPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes checkPop {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.album-card-info {
+  padding: 16px 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.album-card-name {
+  font-family: "Oswald", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  color: var(--white);
+  transition: color 0.2s;
+}
+
+.album-card.selected .album-card-name {
+  color: var(--gold);
+}
+
+.album-card-meta {
+  font-family: "Space Mono", monospace;
+  font-size: 10px;
+  color: var(--white-dim);
+  letter-spacing: 1px;
+}
+
+/* ALBUM SECTION */
+#album {
+  padding: 60px 48px 100px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.album-cover-wrap {
+  position: relative;
+}
+
+.album-cover-frame {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+}
+
+.album-cover-css {
+  width: 100%;
+  aspect-ratio: 1;
+  position: relative;
+  overflow: hidden;
+  background: #0e0b07;
+}
+
+.album-cover-inner {
+  position: absolute;
+  inset: 0;
+}
+
+.album-crosshair {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.album-crosshair::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  top: 50%;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.album-crosshair::after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 1px;
+  left: 50%;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.album-title-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: clamp(22px, 4vw, 38px);
+  letter-spacing: 3px;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow:
+    2px 2px 0 rgba(0, 0, 0, 0.8),
+    -1px -1px 0 rgba(0, 0, 0, 0.5);
+  line-height: 1;
+}
+
+.advisory-badge {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  border: 1.5px solid rgba(255, 255, 255, 0.6);
+  padding: 4px 6px;
+}
+
+.advisory-badge p {
+  font-family: "Oswald", sans-serif;
+  font-size: 7px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.advisory-badge p:first-child {
+  font-size: 9px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.album-star {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+}
+
+.album-cover-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  pointer-events: none;
+  transition: border-color 0.3s;
+}
+
+.album-cover-frame:hover::after {
+  border-color: rgba(201, 168, 76, 0.5);
+}
+
+.album-decoration {
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  width: 60%;
+  height: 60%;
+  border: 1px solid rgba(201, 168, 76, 0.12);
+  z-index: -1;
+}
+
+.section-label {
+  font-family: "Space Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.section-label::before {
+  content: "";
+  width: 30px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.album-name {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: clamp(40px, 6vw, 72px);
+  line-height: 0.9;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+
+.album-name span {
+  -webkit-text-stroke: 1px rgba(240, 237, 232, 0.3);
+  color: transparent;
+  display: block;
+}
+
+.album-year-badge {
+  display: inline-block;
+  background: var(--gold-dim);
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  color: var(--gold);
+  font-family: "Space Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  padding: 4px 12px;
+  margin-bottom: 28px;
+}
+
+.album-desc {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--white-dim);
+  margin-bottom: 32px;
+  max-width: 420px;
+}
+
+/* TRACKLIST */
+.tracklist {
+  list-style: none;
+}
+
+.tracklist-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(240, 237, 232, 0.06);
+  cursor: pointer;
+  transition: padding-left 0.2s;
+  position: relative;
+}
+
+.tracklist-item:hover {
+  padding-left: 8px;
+}
+
+.tracklist-item:hover .track-n {
+  color: var(--gold);
+}
+.tracklist-item:hover .track-title {
+  color: var(--gold-light);
+}
+
+.track-n {
+  font-family: "Space Mono", monospace;
+  font-size: 11px;
+  color: rgba(240, 237, 232, 0.25);
+  width: 20px;
+  text-align: right;
+  transition: color 0.2s;
+  flex-shrink: 0;
+}
+
+.track-title {
+  font-family: "Oswald", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: color 0.2s;
+  flex: 1;
+}
+
+.track-explicit {
+  font-family: "Space Mono", monospace;
+  font-size: 8px;
+  border: 1px solid rgba(240, 237, 232, 0.2);
+  color: rgba(240, 237, 232, 0.35);
+  padding: 1px 4px;
+  letter-spacing: 0.5px;
+}
+
+.track-duration {
+  font-family: "Space Mono", monospace;
+  font-size: 11px;
+  color: rgba(240, 237, 232, 0.3);
+}
+
+/* TRACKS SECTION (popular) */
+#tracks {
+  padding: 80px 48px;
+  background: var(--near-black);
+  position: relative;
+  overflow: hidden;
+}
+
+#tracks::before {
+  content: "POPULARES";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 180px;
+  color: rgba(255, 255, 255, 0.018);
+  white-space: nowrap;
+  pointer-events: none;
+  letter-spacing: 20px;
+}
+
+.tracks-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 48px;
+}
+
+.section-heading {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: clamp(36px, 5vw, 56px);
+  letter-spacing: 4px;
+}
+
+.tracks-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+}
+
+.big-track {
+  grid-column: 1 / -1;
+  background: var(--gold-dim);
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  padding: 28px 32px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  cursor: pointer;
+  transition: background 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.big-track::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--gold);
+}
+
+.big-track:hover {
+  background: rgba(201, 168, 76, 0.2);
+}
+
+.big-track .big-num {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 64px;
+  color: rgba(201, 168, 76, 0.3);
+  line-height: 1;
+  min-width: 56px;
+}
+
+.big-track .big-info {
+  flex: 1;
+}
+
+.big-track .big-title {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 36px;
+  letter-spacing: 3px;
+  color: var(--white);
+}
+
+.big-track .big-meta {
+  font-family: "Space Mono", monospace;
+  font-size: 10px;
+  color: var(--gold);
+  letter-spacing: 2px;
+  margin-top: 4px;
+  text-transform: uppercase;
+}
+
+.big-track .big-duration {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 28px;
+  color: rgba(201, 168, 76, 0.4);
+  letter-spacing: 2px;
+}
+
+.track-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 24px 28px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    border-color 0.2s;
+}
+
+.track-card:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(201, 168, 76, 0.15);
+}
+
+.track-card .tc-num {
+  font-family: "Space Mono", monospace;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.18);
+  min-width: 16px;
+}
+
+.track-card .tc-title {
+  font-family: "Oswald", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  flex: 1;
+}
+
+.track-card:hover .tc-title {
+  color: var(--gold-light);
+}
+
+.track-card .tc-dur {
+  font-family: "Space Mono", monospace;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.25);
+}
+
+/* IDENTITY SECTION */
+#identity {
+  padding: 100px 48px;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 80px;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.identity-quote {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: clamp(36px, 4.5vw, 56px);
+  line-height: 1.05;
+  letter-spacing: 2px;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.identity-quote .quote-mark {
+  color: var(--gold);
+  font-size: 1.4em;
+  line-height: 0;
+  vertical-align: -0.2em;
+}
+
+.identity-body {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.9;
+  color: var(--white-dim);
+  margin-bottom: 40px;
+  max-width: 480px;
+}
+
+.identity-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  margin-top: 40px;
+}
+
+.identity-stat {
+  background: var(--black);
+  padding: 24px 20px;
+  text-align: center;
+}
+
+.identity-stat-num {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 36px;
+  color: var(--gold);
+  letter-spacing: 2px;
+  display: block;
+}
+
+.identity-stat-label {
+  font-family: "Space Mono", monospace;
+  font-size: 8px;
+  letter-spacing: 2px;
+  color: var(--white-dim);
+  text-transform: uppercase;
+  display: block;
+  margin-top: 4px;
+}
+
+.identity-visual {
+  position: relative;
+}
+
+.id-img-wrap {
+  position: relative;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+}
+
+.id-img-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      ellipse 60% 70% at 40% 50%,
+      rgba(255, 140, 0, 0.08) 0%,
+      transparent 60%
+    ),
+    linear-gradient(180deg, #121008 0%, #0c0a07 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.id-img-wrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(5, 5, 5, 0.5) 100%
+  );
+}
+
+.id-border-deco {
+  position: absolute;
+  top: 20px;
+  right: -20px;
+  bottom: -20px;
+  left: 20px;
+  border: 1px solid rgba(201, 168, 76, 0.12);
+  z-index: -1;
+}
+
+.id-label {
+  position: absolute;
+  top: -15px;
+  left: 24px;
+  background: var(--black);
+  padding: 0 8px;
+  font-family: "Space Mono", monospace;
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+
+/* SPOTIFY CTA */
+#cta {
+  padding: 120px 48px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background: var(--near-black);
+}
+
+#cta::before {
+  content: "RAMOS";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 220px;
+  color: rgba(255, 255, 255, 0.015);
+  white-space: nowrap;
+  pointer-events: none;
+  letter-spacing: 30px;
+}
+
+.cta-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.cta-eyebrow {
+  font-family: "Space Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.cta-title {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: clamp(48px, 8vw, 96px);
+  line-height: 0.9;
+  letter-spacing: 4px;
+  margin-bottom: 24px;
+}
+
+.cta-title em {
+  -webkit-text-stroke: 1px rgba(240, 237, 232, 0.4);
+  color: transparent;
+  font-style: normal;
+}
+
+.cta-sub {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--white-dim);
+  letter-spacing: 1px;
+  margin-bottom: 48px;
+  line-height: 1.7;
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* ANIMATIONS */
+@keyframes checkPopFirst{
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
+@keyframes scrollPulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes tickerScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .hero-content {
+    padding: 0 24px 64px;
+  }
+
+  .album-selector-section {
+    padding: 64px 24px 40px;
+  }
+  .album-selector-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .album-card {
+    max-width: 200px;
+    min-width: 200px;
+    margin: 0 auto;
+  }
+  #album {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    padding: 40px 24px 64px;
+  }
+  #tracks {
+    padding: 64px 24px;
+  }
+  .tracks-grid {
+    grid-template-columns: 1fr;
+  }
+  #identity {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    padding: 64px 24px;
+  }
+  .identity-stats {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  #cta {
+    padding: 80px 24px;
+  }
+
+  .scroll-indicator {
+    display: none;
+  }
+}

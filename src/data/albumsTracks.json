@@ -1,0 +1,9 @@
+{
+  "elegante-y-peligroso": [
+    { "number": 1, "title": "99 Yards", "duration": "3:05", "explicit": true, "popular": true },
+    { "number": 2, "title": "Matrix", "duration": "2:56", "explicit": true, "popular": true },
+    { "number": 3, "title": "With My G's", "duration": "3:44", "explicit": true, "popular": true },
+    { "number": 4, "title": "Alterego", "duration": "2:47", "explicit": true, "popular": true },
+    { "number": 5, "title": "Fresh", "duration": "2:36", "explicit": true, "popular": true }
+  ]
+}
