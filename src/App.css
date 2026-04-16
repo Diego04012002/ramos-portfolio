@@ -1225,6 +1225,9 @@ body {
 
 /* MOBILE */
 @media (max-width: 768px) {
+  .hero-right{
+    display: none;
+  }
   .hero-content {
     padding: 0 24px 64px;
   }
